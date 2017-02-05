@@ -16,13 +16,13 @@ COPY s2i /usr/libexec/s2i
 
 RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     yum install -y $INSTALL_PKGS && \
-    yum clean all && \
-    useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin \
+    yum clean all
+RUN useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin \
         -c "Default Application User" default && \
     mkdir -p ${HOME} /opt/activator /opt/s2i/destination/src/ /deployments && \
     chown -R 1001:0 /opt/app-root /opt/activator /opt/s2i/destination/src/ /deployments && \
-    chmod -R "a+rwX" /deployments && \
-    curl -o /tmp/typesafe-activator-${ACTIVATOR_VERSION}.zip https://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/typesafe-activator-${ACTIVATOR_VERSION}.zip && \
+    chmod -R "a+rwX" /deployments
+RUN curl -o /tmp/typesafe-activator-${ACTIVATOR_VERSION}.zip https://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/typesafe-activator-${ACTIVATOR_VERSION}.zip && \
     unzip /tmp/typesafe-activator-${ACTIVATOR_VERSION}.zip -d /tmp && \
     mv /tmp/activator-dist-${ACTIVATOR_VERSION}/* /opt/activator && \
     chown -R 1001:0 /opt/activator && \
