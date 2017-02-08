@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM fedora
 
 MAINTAINER Andrew Block <ablock@redhat.com>
 
