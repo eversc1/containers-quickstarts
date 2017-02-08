@@ -14,8 +14,6 @@ ENV ACTIVATOR_VERSION=1.3.10 \
 
 COPY s2i /usr/libexec/s2i
 
-RUN subscription-manager register --username=eversc1@outlook.com --auto-attach
-
 RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     yum install -y $INSTALL_PKGS && \
     yum clean all
